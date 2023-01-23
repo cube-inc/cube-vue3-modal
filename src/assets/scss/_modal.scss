@@ -1,0 +1,142 @@
+.modal {
+  --modal-z-index: #{$modal-z-index};
+  --modal-backdrop-color: #{$modal-backdrop-color};
+  --modal-dialog-margin-x: #{$modal-dialog-margin-x-xs};
+  --modal-dialog-margin-y: #{$modal-dialog-margin-y-xs};
+  --modal-dialog-overscroll-margin: #{$modal-dialog-overscroll-margin};
+  --modal-dialog-border-radius: #{$modal-dialog-border-radius} #{$modal-dialog-border-radius} 0 0;
+  --modal-dialog-background-color: #{$modal-dialog-background-color};
+  --modal-dialog-box-shadow: #{modal-dialog-box-shadow};
+  --modal-dialog-handle-top: #{$modal-dialog-handle-top};
+  --modal-dialog-handle-width: #{$modal-dialog-handle-width};
+  --modal-dialog-handle-height: #{$modal-dialog-handle-height};
+  --modal-dialog-handle-border-radius: #{$modal-dialog-handle-border-radius};
+  --modal-title-bar-padding: #{$modal-title-bar-padding};
+  --modal-close-margin: #{$modal-close-margin};
+  --modal-close-button-size: #{$modal-close-button-size};
+  --modal-close-border-radius: #{$modal-close-border-radius};
+  --modal-close-font-size: #{$modal-close-font-size};
+  --modal-close-color: #{$modal-close-color};
+  --modal-close-color-focus: #{$modal-close-color-focus};
+  --modal-close-background-color: #{$modal-close-background-color};
+
+  position: fixed;
+  z-index: var(--modal-z-index);
+  inset: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  overflow: hidden;
+  pointer-events: none;
+  &:focus {
+    outline: 0;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--modal-backdrop-color);
+  pointer-events: auto;
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  width: 100%;
+  height: calc(100% - var(--modal-dialog-margin-y) + var(--modal-dialog-overscroll-margin));
+  margin: var(--modal-dialog-margin-y) var(--modal-dialog-margin-x) calc(0px - var(--modal-dialog-overscroll-margin))
+    var(--modal-dialog-margin-x);
+  padding-bottom: var(--modal-dialog-overscroll-margin);
+  border-radius: var(--modal-dialog-border-radius);
+  background-color: var(--modal-dialog-background-color);
+  box-shadow: var(--modal-dialog-box-shadow);
+  overflow: hidden;
+  pointer-events: auto;
+  &:focus {
+    outline: none;
+  }
+}
+
+///
+/// Dialog handle (touch device only)
+///
+@media (hover: none) {
+  .modal-dialog::before {
+    content: '';
+    position: absolute;
+    inset: var(--modal-dialog-handle-top) calc(50vw - var(--modal-dialog-handle-width) - var(--modal-dialog-margin-x));
+    height: var(--modal-dialog-handle-height);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: var(--modal-dialog-handle-border-radius);
+  }
+}
+
+///
+/// Dialog container
+///
+.modal-dialog-container {
+  height: 100%;
+  max-height: none;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+///
+/// Close button
+///
+.modal-dialog-close {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: var(--modal-close-margin);
+  padding: 0;
+  width: var(--modal-close-button-size);
+  height: var(--modal-close-button-size);
+  border: 0 none;
+  border-radius: var(--modal-close-border-radius);
+  font-size: var(--modal-close-font-size);
+  line-height: var(--modal-close-button-size);
+  color: var(--modal-close-color);
+  background-color: var(--modal-close-background-color);
+  box-shadow: 0 0 0 3px transparent;
+  cursor: pointer;
+  transition: all 100ms ease;
+  @media (hover: hover) {
+    &:hover {
+      --modal-close-background-color: #{$modal-close-background-color-hover};
+    }
+  }
+  &::-moz-focus-inner {
+    outline: none;
+  }
+  &:focus {
+    box-shadow: 0 0 0 3px var(--modal-close-color-focus);
+  }
+  &.active,
+  &:active {
+    --modal-close-background-color: #{$modal-close-background-color-active};
+  }
+  .icon {
+    display: block;
+    width: calc(var(--modal-close-button-size) * 0.3);
+    height: calc(var(--modal-close-button-size) * 0.3);
+    color: var(--modal-close-color);
+    stroke: var(--modal-close-color);
+    fill: var(--modal-close-color);
+  }
+}
+
+///
+/// Multiple modal offset ^^
+///
+.modal:not(.modal-fullscreen) {
+  + .modal {
+    padding-top: 0.25rem;
+  }
+}
