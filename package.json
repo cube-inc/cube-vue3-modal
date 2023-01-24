@@ -2,6 +2,18 @@
   "name": "cube-vue3-modal",
   "version": "1.0.0-beta.2",
   "type": "module",
+  "description": "A simple, basic, highly customizable and mobile friendly modal component for Vue3.",
+  "author": "Fred Gomez <fred.gomez@me.com>",
+  "license": "MIT",
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cube-inc/cube-vue3-modal.git"
+  },
+  "keywords": [
+    "vue3",
+    "modal"
+  ],
   "files": [
     "dist",
     "src/assets"
