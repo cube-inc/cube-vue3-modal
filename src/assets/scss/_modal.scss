@@ -122,14 +122,14 @@
   &:active {
     --modal-close-background-color: #{$modal-close-background-color-active};
   }
-  .icon {
-    display: block;
-    width: calc(var(--modal-close-button-size) * 0.3);
-    height: calc(var(--modal-close-button-size) * 0.3);
-    color: var(--modal-close-color);
-    stroke: var(--modal-close-color);
-    fill: var(--modal-close-color);
-  }
+}
+.modal-dialog-close-icon {
+  display: block;
+  width: calc(var(--modal-close-button-size) * 0.3);
+  height: calc(var(--modal-close-button-size) * 0.3);
+  color: var(--modal-close-color);
+  stroke: var(--modal-close-color);
+  fill: var(--modal-close-color);
 }
 
 ///
