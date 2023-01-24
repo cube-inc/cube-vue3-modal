@@ -27,9 +27,7 @@ import {
   ComponentInternalInstance,
   getCurrentInstance,
   nextTick,
-  onBeforeUnmount,
   onUnmounted,
-  reactive,
   PropType,
   ref,
   TeleportProps,
@@ -173,8 +171,7 @@ function onTouchEnd(event: TouchEvent) {
 }
 
 function onDialogTransitionEnd() {
-  const modal = $modal.value
-  modal?.classList.remove($transitionEnterActiveClassName)
+  $modal.value?.classList.remove($transitionEnterActiveClassName)
 }
 
 function onModalAfterEnter() {
@@ -183,9 +180,9 @@ function onModalAfterEnter() {
 }
 
 function onModalAfterLeave() {
-  if ($lastFocus instanceof HTMLElement) $lastFocus.focus()
   emit('closed', $self)
   $resolve && $resolve()
+  if ($lastFocus instanceof HTMLElement) $lastFocus.focus()
 }
 
 function lockScroll() {
