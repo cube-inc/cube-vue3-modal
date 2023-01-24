@@ -1,7 +1,7 @@
 $modal-z-index: 1000 !default;
 
 // Backdrop
-$modal-backdrop-color: rgba(black, 0.2) !default;
+$modal-backdrop-color: rgba(black, 0.25) !default;
 
 // Dialog
 $modal-dialog-margin-y: 4rem !default;
@@ -21,9 +21,6 @@ $modal-dialog-handle-top: 6px !default;
 $modal-dialog-handle-height: 5px !default;
 $modal-dialog-handle-border-radius: $modal-dialog-handle-height !default;
 
-// Title bar
-$modal-title-bar-padding: 1rem;
-
 // Close button
 $modal-close-font-size: 1rem !default;
 $modal-close-button-size: 2.5rem !default;
@@ -34,6 +31,15 @@ $modal-close-background-color: hsla(0, 0%, 90%, 0.9) !default;
 $modal-close-background-color-hover: hsla(0, 0%, 80%, 0.9) !default;
 $modal-close-background-color-active: hsla(0, 0%, 70%, 0.9) !default;
 $modal-close-color-focus: hsla(0, 0%, 60%, 0.5) !default;
+
+// Animations
+$modal-enter-backdrop-transition-duration: 350ms !default;
+$modal-enter-dialog-transition-duration: 550ms !default;
+$modal-enter-dialog-transition-timing: cubic-bezier(0.17, 1.1, 0.33, 1) !default;
+$modal-leave-backdrop-transition-duration: 350ms !default;
+$modal-leave-backdrop-transition-delay: 250ms !default;
+$modal-leave-dialog-transition-duration: 400ms !default;
+$modal-leave-dialog-transition-timing: ease-out !default;
 
 // Breakpoints
 $modal-breakpoint-xs: 576px !default;
