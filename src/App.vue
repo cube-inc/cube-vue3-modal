@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <div class="content">
-      <pre>{{ name }} v{{ version }}</pre>
-      <h1>Cube Vue3 Modal demo</h1>
+      <h1 class="title">{{ name }}</h1>
+      <pre>v{{ version }}</pre>
       <fieldset class="form-group">
         <label class="form-label">
           <input type="checkbox" v-model="modalCloseButton" class="form-control" />
@@ -182,9 +182,13 @@ body {
 .lead {
   font-size: 1.4em;
 }
+.title {
+  margin: 0;
+  font-size: 2.5em;
+}
 h1 {
   margin: 1em 0;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 h2 {
   margin: 0.5em 0;
