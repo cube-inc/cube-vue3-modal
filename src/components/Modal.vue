@@ -1,23 +1,25 @@
 <template>
-  <Transition :name="transitionName" @after-enter="onModalAfterEnter" @after-leave="onModalAfterLeave">
-    <div v-if="opened" ref="$modal" tabindex="-1" class="modal" v-bind="$attrs">
-      <div class="modal-backdrop" ref="$backdrop" @click.self.stop="close"></div>
-      <div
-        ref="$dialog"
-        class="modal-dialog"
-        role="dialog"
-        @touchstart="onTouchStart"
-        @touchmove="onTouchMove"
-        @touchend="onTouchEnd"
-        @transitionend="onDialogTransitionEnd"
-      >
-        <ButtonClose v-if="props.closeButton" :class="{ active: willClose }" @click="close" />
-        <div ref="$container" class="modal-dialog-container">
-          <slot />
+  <Teleport :to="target">
+    <Transition :name="transitionName" @after-enter="onModalAfterEnter" @after-leave="onModalAfterLeave">
+      <div v-if="opened" ref="$modal" tabindex="-1" class="modal" v-bind="$attrs">
+        <div class="modal-backdrop" ref="$backdrop" @click.self.stop="close"></div>
+        <div
+          ref="$dialog"
+          class="modal-dialog"
+          role="dialog"
+          @touchstart="onTouchStart"
+          @touchmove="onTouchMove"
+          @touchend="onTouchEnd"
+          @transitionend="onDialogTransitionEnd"
+        >
+          <ButtonClose v-if="props.closeButton" :class="{ active: willClose }" @click="close" />
+          <div ref="$container" class="modal-dialog-container">
+            <slot />
+          </div>
         </div>
       </div>
-    </div>
-  </Transition>
+    </Transition>
+  </Teleport>
 </template>
 
 <script setup lang="ts">
@@ -26,10 +28,11 @@ import {
   getCurrentInstance,
   nextTick,
   onBeforeUnmount,
-  onMounted,
   onUnmounted,
   reactive,
+  PropType,
   ref,
+  TeleportProps,
   watch,
 } from 'vue'
 import ButtonClose from './ModalButtonClose.vue'
@@ -39,7 +42,7 @@ const props = defineProps({
   closeButton: { type: Boolean, default: true },
   closeRatio: { type: Number, default: 1 / 5 },
   transitionName: { type: String, default: 'modal' },
-  target: { type: [String, HTMLElement], default: () => document.body },
+  target: { type: [String, Object] as PropType<TeleportProps['to']>, default: () => 'body' },
 })
 
 const emit = defineEmits<{
@@ -59,8 +62,6 @@ let $isScrollAtTop = false
 let $isScrollAtBottom = false
 let $closeThreshold = 0
 let $bodyOverflow = ''
-const $targetElement =
-  props.target instanceof HTMLElement ? props.target : document.querySelector(props.target) || document.body
 const $transitionEnterActiveClassName = `${props.transitionName}-enter-active`
 const $modal = ref<HTMLDivElement>()
 // const $backdrop = ref<HTMLDivElement>()
@@ -196,14 +197,7 @@ function unlockScroll() {
   document.body.style.overflow = $bodyOverflow
 }
 
-onMounted(() => {
-  const $el = $self?.vnode.el as HTMLElement | undefined
-  if ($el) $targetElement.appendChild($el)
-})
-
 onUnmounted(() => {
-  const $el = $self?.vnode.el as HTMLElement | undefined
-  if ($el) $targetElement.removeChild($el)
   if (opened.value) unlockScroll()
 })
 
