@@ -3,114 +3,37 @@
     <div class="content">
       <h1 class="title">{{ name }}</h1>
       <pre>v{{ version }}</pre>
-      <fieldset class="form-group">
-        <label class="form-label">
-          <input type="checkbox" v-model="modalCloseButton" class="form-control" />
-          <span class="form-text">Close button</span>
-        </label>
-      </fieldset>
-      <fieldset class="form-group">
-        <legend class="form-legend">Size</legend>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="" class="form-control" />
-          <span class="form-text">Default</span>
-        </label>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="modal-fullscreen" class="form-control" />
-          <span class="form-text">Fullscreen</span>
-        </label>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="modal-xs" class="form-control" />
-          <span class="form-text">XS</span>
-        </label>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="modal-sm" class="form-control" />
-          <span class="form-text">SM</span>
-        </label>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="modal-md" class="form-control" />
-          <span class="form-text">MD</span>
-        </label>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="modal-lg" class="form-control" />
-          <span class="form-text">LG</span>
-        </label>
-        <label class="form-label">
-          <input type="radio" name="size" v-model="modalSize" value="modal-xl" class="form-control" />
-          <span class="form-text">XL</span>
-        </label>
-      </fieldset>
+      <DemoModalSettings v-model="modalSettings" />
       <div class="button-list">
         <button class="button" @click="open">Open</button>
       </div>
-      <Modal v-model="modal" :class="modalClass" :close-button="modalCloseButton">
-        <div class="container">
-          <div class="content">
-            <h2>Test</h2>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae architecto fugit mollitia fuga, et ex
-              iusto eos quisquam eligendi officiis, quo corporis voluptatibus sit ad perspiciatis numquam soluta ducimus
-              nisi?
-            </p>
-            <fieldset class="form-group">
-              <label class="form-label">
-                <input type="checkbox" v-model="modalCloseButton" class="form-control" />
-                <span class="form-text">Close button</span>
-              </label>
-            </fieldset>
-            <fieldset class="form-group">
-              <legend class="form-legend">Size</legend>
-              <label class="form-label">
-                <input type="radio" name="modal-size" v-model="modalSize" value="" class="form-control" />
-                <span class="form-text">Default</span>
-              </label>
-              <label class="form-label">
-                <input
-                  type="radio"
-                  name="modal-size"
-                  v-model="modalSize"
-                  value="modal-fullscreen"
-                  class="form-control"
-                />
-                <span class="form-text">Fullscreen</span>
-              </label>
-              <label class="form-label">
-                <input type="radio" name="modal-size" v-model="modalSize" value="modal-xs" class="form-control" />
-                <span class="form-text">XS</span>
-              </label>
-              <label class="form-label">
-                <input type="radio" name="modal-size" v-model="modalSize" value="modal-sm" class="form-control" />
-                <span class="form-text">SM</span>
-              </label>
-              <label class="form-label">
-                <input type="radio" name="modal-size" v-model="modalSize" value="modal-md" class="form-control" />
-                <span class="form-text">MD</span>
-              </label>
-              <label class="form-label">
-                <input type="radio" name="modal-size" v-model="modalSize" value="modal-lg" class="form-control" />
-                <span class="form-text">LG</span>
-              </label>
-              <label class="form-label">
-                <input type="radio" name="size" v-model="modalSize" value="modal-xl" class="form-control" />
-                <span class="form-text">XL</span>
-              </label>
-            </fieldset>
-            <div class="button-list">
-              <button class="button" @click="openOtherModal">Open another modal</button>
-              <button class="button" @click="close">Close</button>
-            </div>
+      <Modal v-model="modal" :class="modalSettings.size" :close-button="modalSettings.closeButton">
+        <div class="container content">
+          <h2>Test</h2>
+          <DemoModalSettings v-model="modalSettings" />
+          <div class="button-list">
+            <button class="button" @click="openOtherModal">Open another modal</button>
+            <button class="button" @click="close">Close</button>
           </div>
         </div>
-        <Modal ref="otherModal">
-          <div class="container">
-            <div class="content">
-              <h2>Another modal</h2>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eaque ab officiis distinctio, assumenda
-                iusto, sequi nemo repellat laborum asperiores delectus tempora quis veritatis maiores modi numquam
-                maxime, est corrupti.
-              </p>
-            </div>
+        <Modal ref="otherModal" class="modal-xs">
+          <div class="container content">
+            <h2>Another modal</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eaque ab officiis distinctio, assumenda
+              iusto, sequi nemo repellat laborum asperiores delectus tempora quis veritatis maiores modi numquam maxime,
+              est corrupti.
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore fuga laboriosam doloremque minus ex
+              suscipit illo in consequatur rem necessitatibus, unde vel possimus molestias veritatis ducimus, alias
+              molestiae sequi. Alias?
+            </p>
+            <p>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus velit voluptatum accusamus laudantium
+              veritatis, obcaecati delectus nam exercitationem consequatur. Sunt nulla aliquid, corrupti nam cum
+              accusamus repellendus quod illo velit?
+            </p>
           </div>
         </Modal>
       </Modal>
@@ -119,17 +42,17 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
-import Modal from './components/Modal.vue'
+import { reactive, ref } from 'vue'
 import { name, version } from '../package.json'
+import DemoModalSettings from './components/Demo/ModalSettings.vue'
+import Modal from './components/Modal.vue'
 
 const modal = ref(false)
 const otherModal = ref<InstanceType<typeof Modal>>()
-const modalCloseButton = ref(true)
-const modalSize = ref('')
 
-const modalClass = computed(() => {
-  return modalSize.value
+const modalSettings = ref({
+  closeButton: true,
+  size: '',
 })
 
 function open() {
@@ -206,13 +129,12 @@ h2 {
   cursor: pointer;
 }
 .form-control {
+  &[type='checkbox'],
+  &[type='radio'] {
+    cursor: pointer;
+  }
   + .form-text {
     margin-left: 0.25rem;
-  }
-  &[type='radio'] {
-    + & {
-      margin-left: 1rem;
-    }
   }
 }
 .form-text {
