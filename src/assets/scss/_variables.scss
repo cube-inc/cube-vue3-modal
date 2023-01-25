@@ -34,11 +34,12 @@ $modal-close-color-focus: hsla(0, 0%, 60%, 0.5) !default;
 
 // Animations
 $modal-enter-backdrop-transition-duration: 350ms !default;
+$modal-enter-backdrop-transition-timing: ease !default;
 $modal-enter-dialog-transition-duration: 550ms !default;
-$modal-enter-dialog-transition-timing: cubic-bezier(0.17, 1.1, 0.33, 1) !default;
+$modal-enter-dialog-transition-timing: cubic-bezier(0.2, 1.1, 0.33, 1) !default;
 $modal-leave-backdrop-transition-duration: 350ms !default;
-$modal-leave-backdrop-transition-delay: 250ms !default;
-$modal-leave-dialog-transition-duration: 400ms !default;
+$modal-leave-backdrop-transition-timing: ease !default;
+$modal-leave-dialog-transition-duration: 350ms !default;
 $modal-leave-dialog-transition-timing: ease-out !default;
 
 // Breakpoints

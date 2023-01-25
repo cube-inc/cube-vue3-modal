@@ -4,7 +4,7 @@
 .modal-enter-active {
   transition-duration: max($modal-enter-backdrop-transition-duration, $modal-enter-dialog-transition-duration);
   > .modal-backdrop {
-    transition: opacity $modal-enter-backdrop-transition-duration ease;
+    transition: opacity $modal-enter-backdrop-transition-duration $modal-enter-backdrop-transition-timing;
   }
   > .modal-dialog {
     transition: transform $modal-enter-dialog-transition-duration $modal-enter-dialog-transition-timing;
@@ -39,15 +39,12 @@
 /// leave active
 ///
 .modal-leave-active {
-  transition-duration: max(
-    $modal-leave-backdrop-transition-duration + $modal-leave-backdrop-transition-delay,
-    $modal-leave-dialog-transition-duration
-  );
+  transition-duration: max($modal-leave-backdrop-transition-duration, $modal-leave-dialog-transition-duration);
   > .modal-backdrop {
-    transition: opacity $modal-leave-backdrop-transition-duration ease $modal-leave-backdrop-transition-delay;
+    transition: opacity $modal-leave-backdrop-transition-duration $modal-leave-backdrop-transition-timing;
   }
   > .modal-dialog {
-    transition: transform $modal-leave-dialog-transition-duration ease-out;
+    transition: transform $modal-leave-dialog-transition-duration $modal-leave-dialog-transition-timing;
   }
 }
 
