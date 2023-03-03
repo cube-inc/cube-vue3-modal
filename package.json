@@ -1,6 +1,6 @@
 {
   "name": "cube-vue3-modal",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "type": "module",
   "description": "A simple, basic, highly customizable and mobile friendly modal component for Vue3.",
   "author": "Fred Gomez <fred.gomez@me.com>",
